@@ -1,95 +1,66 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import { Stack, Button, Typography } from "@mui/material";
+import { useState } from "react";
 
 export default function Home() {
+
+  const [ display, setDisplay ] = useState(0)
+
+  const handleClick = ( value ) => {
+    setDisplay( value );
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div>
+      <Typography variant={'h5'}>The Calculator</Typography>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <Stack sx={{width: 'fit-content', boxShadow: 'inset 0px 0px 15px rgba(0,0,0,0.8)'}} direction={'column'} style={{ backgroundColor: '#575757', borderRadius: '20px', padding: '10px'}}>
+        
+        <Stack style={{backgroundColor: '#CEDFCD', margin: '10px', borderRadius: '10px'}}>
+          <Typography variant={'body1'} style={{textAlign: 'right', fontSize: '25px', paddingRight: '5px'}}>{ display }</Typography>
+        </Stack>
+        
+        <Stack alignItems={'center'} justifyContent={'center'} direction={'column-reverse'} spacing={1} style={{ margin: '10px' }}>
+          
+          <Stack direction={'row'} spacing={1}>
+            <Button onClick={ () => handleClick(0) } variant={'contained'}></Button>
+            <Button onClick={ () => handleClick(0) } variant={'contained'}>0</Button>
+            <Button onClick={ () => handleClick('.') } variant={'contained'}>.</Button>
+            <Button onClick={ () => handleClick('=') } variant={'contained'}>=</Button>
+          </Stack>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+          <Stack direction={'row'} spacing={1}>
+            <Button onClick={ () => handleClick(1) } variant={'contained'}>1</Button>
+            <Button onClick={ () => handleClick(2) } variant={'contained'}>2</Button>
+            <Button onClick={ () => handleClick(3) } variant={'contained'}>3</Button>
+            <Button onClick={ () => handleClick('+') } variant={'contained'}>+</Button>
+          </Stack>
+          
+          <Stack direction={'row'} spacing={1}>
+            <Button onClick={ () => handleClick(4) } variant={'contained'}>4</Button>
+            <Button onClick={ () => handleClick(5) } variant={'contained'}>5</Button>
+            <Button onClick={ () => handleClick(6) } variant={'contained'}>6</Button>
+            <Button onClick={ () => handleClick('-') } variant={'contained'}>-</Button>
+          </Stack>
+          
+          <Stack direction={'row'} spacing={1}>
+            <Button onClick={ () => handleClick(7) } variant={'contained'}>7</Button>
+            <Button onClick={ () => handleClick(8) } variant={'contained'}>8</Button>
+            <Button onClick={ () => handleClick(9) } variant={'contained'}>9</Button>
+            <Button onClick={ () => handleClick('x') } variant={'contained'}>x</Button>
+          </Stack>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+          <Stack direction={'row'} spacing={1}>
+            <Button onClick={ () => handleClick(0) } variant={'contained'}>C</Button>
+            <Button onClick={ () => handleClick(0) } variant={'contained'}></Button>
+            <Button onClick={ () => handleClick(0) } variant={'contained'}></Button>
+            <Button onClick={ () => handleClick('/') } variant={'contained'}>/</Button>
+          </Stack>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
+        </Stack>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+      </Stack>
+    </div>
+  ); 
 }
