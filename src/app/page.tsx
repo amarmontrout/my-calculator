@@ -1,7 +1,6 @@
 'use client';
 
 import { Stack, Button, Typography } from "@mui/material";
-import { stringify } from "querystring";
 import { useState } from "react";
 
 export default function Home() {
@@ -58,8 +57,6 @@ export default function Home() {
     const newState = Number(`${prevState}${e}`);
     
     if ( e === 10 ) {
-      setDisplay('0');
-      setA(0);
       setFirst(true);
     } else {
       setDisplay(String(newState));
@@ -72,8 +69,6 @@ export default function Home() {
     const newState = Number(`${prevState}${e}`);
     
     if ( e === 10 ) {
-      setDisplay('0');
-      setB(0);
       setFirst(false);
     } else {
       setDisplay(String(newState));
@@ -91,6 +86,20 @@ export default function Home() {
     }
   }
 
+  function rlc () {
+    if (first === true) {
+      let strA = String(a);
+      let newA = strA.slice(0, -1)
+      setDisplay(newA)
+      setA(Number(newA))
+    } else {
+      let strB = String(b);
+      let newB = strB.slice(0, -1)
+      setDisplay(newB)
+      setB(Number(newB))
+    }
+  }
+
   return (
     <div>
       <Typography variant={'h5'}>The Calculator</Typography>
@@ -98,13 +107,19 @@ export default function Home() {
       <Stack sx={{width: 'fit-content', boxShadow: 'inset 0px 0px 15px rgba(0,0,0,0.8)'}} direction={'column'} style={{ backgroundColor: '#575757', borderRadius: '20px', padding: '10px'}}>
         
         <Stack style={{backgroundColor: '#CEDFCD', margin: '10px', borderRadius: '10px'}}>
+        <Stack style={{ paddingLeft: '5px' }} direction={'row'} spacing={1}>
+            <Typography>{ a }</Typography>
+            <Typography>{ op }</Typography>
+            <Typography>{ b }</Typography>
+          </Stack>
           <Typography variant={'body1'} style={{textAlign: 'right', fontSize: '25px', paddingRight: '5px'}}>{ display }</Typography>
         </Stack>
         
         <Stack alignItems={'center'} justifyContent={'center'} direction={'column-reverse'} spacing={1} style={{ margin: '10px' }}>
           
           <Stack direction={'row'} spacing={1}>
-            <Button onClick={ () => handleNumber(10) } variant={'contained'}>C</Button>
+            <Button variant={'contained'}>.</Button>
+            
             <Button onClick={ () => handleNumber(0) } variant={'contained'}>0</Button>
             <Button onClick={ () => handleEquals() } variant={'contained'}>=</Button>
             <Button onClick={ () => handleOp('/') } variant={'contained'}>/</Button>
@@ -135,13 +150,7 @@ export default function Home() {
             <Button onClick={ () => clearAll(true) } variant={'contained'}>AC</Button>
             <Button onClick={ () => firstNumber(10) } variant={'contained'}>1st</Button>
             <Button onClick={ () => secondNumber(10) } variant={'contained'}>2nd</Button>
-            <Button onClick={ () => handleOp('Q') } variant={'contained'}>Op</Button>
-          </Stack>
-
-          <Stack direction={'row'} spacing={1}>
-            <Typography>{ a }</Typography>
-            <Typography>{ op }</Typography>
-            <Typography>{ b }</Typography>
+            <Button onClick={ () => rlc() } variant={'contained'}>DEL</Button>
           </Stack>
 
         </Stack>
