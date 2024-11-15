@@ -107,12 +107,12 @@ export default function Home() {
       <Stack sx={{width: 'fit-content', boxShadow: 'inset 0px 0px 15px rgba(0,0,0,0.8)'}} direction={'column'} style={{ backgroundColor: '#575757', borderRadius: '20px', padding: '10px'}}>
         
         <Stack style={{backgroundColor: '#CEDFCD', margin: '10px', borderRadius: '10px'}}>
-        <Stack style={{ paddingLeft: '5px' }} direction={'row'} spacing={1}>
+          <Stack style={{ paddingLeft: '5px' }} direction={'row'} spacing={1}>
             <Typography>{ a }</Typography>
             <Typography>{ op }</Typography>
             <Typography>{ b }</Typography>
           </Stack>
-          <Typography variant={'body1'} style={{textAlign: 'right', fontSize: '25px', paddingRight: '5px'}}>{ display }</Typography>
+          <Typography variant={'body1'} style={{textAlign: 'right', fontSize: '25px', paddingRight: '5px'}}>{ display || 0 }</Typography>
         </Stack>
         
         <Stack alignItems={'center'} justifyContent={'center'} direction={'column-reverse'} spacing={1} style={{ margin: '10px' }}>
